@@ -1,0 +1,163 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Window.cs" type="Script" id=1]
+[ext_resource path="res://FileButton.cs" type="Script" id=2]
+[ext_resource path="res://TextPreview.cs" type="Script" id=3]
+[ext_resource path="res://AddButton.cs" type="Script" id=4]
+[ext_resource path="res://EditButton.cs" type="Script" id=5]
+
+[node name="Window" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Notifications" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NoFile" type="AcceptDialog" parent="Notifications"]
+margin_left = 370.0
+margin_top = 271.0
+margin_right = 653.0
+margin_bottom = 329.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+dialog_text = "No file set, use file>open to choose a file."
+
+[node name="CenterContainer" type="MarginContainer" parent="."]
+visible = false
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FileDialog" type="FileDialog" parent="CenterContainer"]
+visible = true
+margin_right = 614.0
+margin_bottom = 360.0
+window_title = "Open a File"
+resizable = true
+mode = 0
+access = 2
+current_dir = "/home/liam/codebase/GodotDev/til"
+current_path = "/home/liam/codebase/GodotDev/til/"
+
+[node name="VB" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopHB" type="HBoxContainer" parent="VB"]
+margin_right = 1024.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FileButton" type="MenuButton" parent="VB/TopHB"]
+margin_right = 35.0
+margin_bottom = 20.0
+text = "File"
+items = [ "Open", null, 0, false, false, 0, 0, null, "", false, "Push", null, 0, false, false, 1, 0, null, "", false, "Close", null, 0, false, false, 2, 0, null, "", false ]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainHB" type="HBoxContainer" parent="VB"]
+margin_top = 24.0
+margin_right = 1024.0
+margin_bottom = 600.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Editor" type="TextEdit" parent="VB/MainHB"]
+margin_right = 506.0
+margin_bottom = 576.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+highlight_current_line = true
+show_line_numbers = true
+
+[node name="VSeparator" type="VSeparator" parent="VB/MainHB"]
+margin_left = 510.0
+margin_right = 514.0
+margin_bottom = 576.0
+
+[node name="TextPreview" type="RichTextLabel" parent="VB/MainHB"]
+margin_left = 518.0
+margin_right = 1024.0
+margin_bottom = 576.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BottomHB" type="HBoxContainer" parent="VB"]
+visible = false
+margin_top = 580.0
+margin_right = 1024.0
+margin_bottom = 600.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EditButton" type="Button" parent="VB/BottomHB"]
+margin_left = 987.0
+margin_right = 1024.0
+margin_bottom = 20.0
+text = "Edit"
+script = ExtResource( 5 )
+
+[node name="AddButton" type="Button" parent="VB/BottomHB"]
+margin_left = 946.0
+margin_right = 983.0
+margin_bottom = 20.0
+text = "Add"
+script = ExtResource( 4 )
+[connection signal="file_selected" from="CenterContainer/FileDialog" to="VB/TopHB/FileButton" method="OnOpenFile"]
+[connection signal="pressed" from="VB/BottomHB/EditButton" to="VB/BottomHB/EditButton" method="Pressed"]
+[connection signal="pressed" from="VB/BottomHB/AddButton" to="VB/BottomHB/AddButton" method="AddEntry"]
