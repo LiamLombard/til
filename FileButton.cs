@@ -55,7 +55,7 @@ public class FileButton : MenuButton
 		w.path = "";
 
 		TextPreview textPreview = GetNode<TextPreview>("/root/Window/VB/MainHB/TextPreview");
-		textPreview.Clear();
+		textPreview.ClearText();
 
 		HBoxContainer bottomButtons = GetNode<HBoxContainer>("/root/Window/VB/BottomHB");
 		bottomButtons.Hide();

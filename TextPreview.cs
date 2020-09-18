@@ -8,7 +8,7 @@ public class TextPreview : RichTextLabel
 		this.Text = System.IO.File.ReadAllText(path);
 	}
 
-	public void Clear()
+	public void ClearText()
 	{
 		this.Text = "";
 	}
