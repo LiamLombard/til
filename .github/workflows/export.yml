@@ -1,5 +1,6 @@
 jobs:
   export:
+    runs-on: ubuntu-latest
     steps:
       - name: Godot Export
         uses: firebelley/godot-export@v2.4.0
