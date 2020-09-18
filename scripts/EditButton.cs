@@ -8,6 +8,7 @@ public class EditButton : Button
 	private TextPreview preview;
 	private Window window;
 	private SaveButton saveButton;
+	private AddButton addButton;
 
 	public override void _Ready()
 	{
@@ -15,6 +16,7 @@ public class EditButton : Button
 		preview = GetNode<TextPreview>("/root/Window/VB/MainHB/TextPreview");
 		window = GetNode<Window>("/root/Window");
 		saveButton = GetNode<SaveButton>("/root/Window/VB/BottomHB/SaveButton");
+		addButton = GetNode<AddButton>("/root/Window/VB/BottomHB/AddButton");
 	}
 
 	private void Pressed()
@@ -39,6 +41,7 @@ public class EditButton : Button
 			GD.Print("Path is not set");
 		}
 		this.Hide();
+		addButton.Hide();
 		saveButton.Show();
 	}
 }

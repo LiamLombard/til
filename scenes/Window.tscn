@@ -54,8 +54,8 @@ anchor_bottom = 1.0
 [node name="FileDialog" type="FileDialog" parent="CenterContainer"]
 margin_left = 353.0
 margin_top = 235.0
-margin_right = 671.0
-margin_bottom = 365.0
+margin_right = 853.0
+margin_bottom = 635.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 window_title = "Open a File"

@@ -1,5 +1,8 @@
 using Godot;
 using System;
+using System.IO;
+
+using File = System.IO.File;
 
 public class Window : Control
 {
@@ -9,30 +12,13 @@ public class Window : Control
 	public override void _Ready()
 	{
 		var error = this.config.Load(config_path);
-		if(error != Godot.Error.Ok)
-		{
-			// Directory dir = new Directory();
-			// if (dir.DirExists(config_dir))
-			// {
-			// 	if(dir.MakeDir(config_dir) != Godot.Error.Ok)
-			// 	{
-			// 		GD.Print("Could not make directory");
-			// 	}
-			// }
-			// else
-			// {
-			// 	GD.Print("Issue with file");
-			// }
-		}
-		else
+		if(error == Godot.Error.Ok)
 		{
 			if(this.config.HasSectionKey("file", "path"))
 			{
-				FileButton fb = GetNode<FileButton>("VB/TopHB/FileButton");
-				fb.OpenFile(this.GetFilePath());
+				OpenFile(this.GetFilePath());
 			}
 		}
-
 	}
 
 	public void SaveFilePath(string path)
@@ -44,5 +30,30 @@ public class Window : Control
 	public string GetFilePath()
 	{
 		return this.config.GetValue("file", "path").ToString();
+	}
+
+	public void OpenFile(string path)
+	{
+		if(File.Exists(path))
+		{
+			SaveFilePath(path);
+
+			TextPreview textPreview = GetNode<TextPreview>("/root/Window/VB/MainHB/TextPreview");
+			textPreview.SetTextFromFile(path);
+
+			HBoxContainer bottomButtons = GetNode<HBoxContainer>("/root/Window/VB/BottomHB");
+			bottomButtons.Show();
+		}
+	}
+
+	public void CloseFile()
+	{
+		SaveFilePath("");
+
+		TextPreview textPreview = GetNode<TextPreview>("/root/Window/VB/MainHB/TextPreview");
+		textPreview.ClearText();
+
+		HBoxContainer bottomButtons = GetNode<HBoxContainer>("/root/Window/VB/BottomHB");
+		bottomButtons.Hide();
 	}
 }
