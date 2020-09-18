@@ -1,0 +1,2 @@
+- name: Godot Export
+  uses: firebelley/godot-export@v2.4.0
