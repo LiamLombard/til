@@ -63,8 +63,8 @@ resizable = true
 mode_overrides_title = false
 mode = 0
 access = 2
-current_dir = "/home/liam/codebase/GodotDev/til"
-current_path = "/home/liam/codebase/GodotDev/til/"
+current_dir = ""
+current_path = ""
 
 [node name="VB" type="VBoxContainer" parent="."]
 anchor_right = 1.0
