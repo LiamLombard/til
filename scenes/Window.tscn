@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Window.cs" type="Script" id=1]
-[ext_resource path="res://FileButton.cs" type="Script" id=2]
-[ext_resource path="res://TextPreview.cs" type="Script" id=3]
-[ext_resource path="res://AddButton.cs" type="Script" id=4]
-[ext_resource path="res://EditButton.cs" type="Script" id=5]
-[ext_resource path="res://SaveButton.cs" type="Script" id=6]
+[ext_resource path="res://scripts/AddButton.cs" type="Script" id=1]
+[ext_resource path="res://scripts/Window.cs" type="Script" id=2]
+[ext_resource path="res://scripts/TextPreview.cs" type="Script" id=3]
+[ext_resource path="res://scripts/SaveButton.cs" type="Script" id=4]
+[ext_resource path="res://scripts/FileButton.cs" type="Script" id=5]
+[ext_resource path="res://scripts/EditButton.cs" type="Script" id=6]
 
 [node name="Window" type="Control"]
 anchor_right = 1.0
@@ -14,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -47,22 +47,20 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 dialog_text = "No file set, use file>open to choose a file."
 
-[node name="CenterContainer" type="MarginContainer" parent="."]
-visible = false
-anchor_left = 0.2
-anchor_top = 0.2
-anchor_right = 0.8
-anchor_bottom = 0.8
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="FileDialog" type="FileDialog" parent="CenterContainer"]
-visible = true
-margin_right = 614.0
-margin_bottom = 360.0
+margin_left = 353.0
+margin_top = 235.0
+margin_right = 671.0
+margin_bottom = 365.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 window_title = "Open a File"
 resizable = true
+mode_overrides_title = false
 mode = 0
 access = 2
 current_dir = "/home/liam/codebase/GodotDev/til"
@@ -92,7 +90,7 @@ margin_right = 35.0
 margin_bottom = 20.0
 text = "File"
 items = [ "Open", null, 0, false, false, 0, 0, null, "", false, "Push", null, 0, false, false, 1, 0, null, "", false, "Close", null, 0, false, false, 2, 0, null, "", false ]
-script = ExtResource( 2 )
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -151,7 +149,7 @@ margin_left = 902.0
 margin_right = 938.0
 margin_bottom = 20.0
 text = "Edit"
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 
 [node name="SaveButton" type="Button" parent="VB/BottomHB"]
 visible = false
@@ -159,14 +157,14 @@ margin_left = 942.0
 margin_right = 983.0
 margin_bottom = 20.0
 text = "Save"
-script = ExtResource( 6 )
+script = ExtResource( 4 )
 
 [node name="AddButton" type="Button" parent="VB/BottomHB"]
 margin_left = 987.0
 margin_right = 1024.0
 margin_bottom = 20.0
 text = "Add"
-script = ExtResource( 4 )
+script = ExtResource( 1 )
 [connection signal="file_selected" from="CenterContainer/FileDialog" to="VB/TopHB/FileButton" method="OpenFile"]
 [connection signal="pressed" from="VB/BottomHB/EditButton" to="VB/BottomHB/EditButton" method="Pressed"]
 [connection signal="pressed" from="VB/BottomHB/SaveButton" to="VB/BottomHB/SaveButton" method="Pressed"]

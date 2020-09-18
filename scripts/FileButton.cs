@@ -1,5 +1,8 @@
 using Godot;
 using System;
+using System.Runtime.InteropServices;
+
+using Environment = System.Environment;
 
 public class FileButton : MenuButton
 {
@@ -29,7 +32,12 @@ public class FileButton : MenuButton
 	{
 		GD.Print("Open file");
 		FileDialog fd = GetNode<FileDialog>("/root/Window/CenterContainer/FileDialog");
-		fd.Show();
+		fd.ClearFilters();
+		string homePath = Environment.GetEnvironmentVariable("HOME");
+		GD.Print(homePath);
+		fd.CurrentDir = homePath;
+		fd.CurrentPath = $"{homePath}/";
+		fd.Popup_();
 	}
 
 	private void PushPressed()

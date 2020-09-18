@@ -57,13 +57,13 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddButton.cs" />
-    <Compile Include="EditButton.cs" />
-    <Compile Include="FileButton.cs" />
+    <Compile Include="scripts\AddButton.cs" />
+    <Compile Include="scripts\EditButton.cs" />
+    <Compile Include="scripts\FileButton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SaveButton.cs" />
-    <Compile Include="TextPreview.cs" />
-    <Compile Include="Window.cs" />
+    <Compile Include="scripts\SaveButton.cs" />
+    <Compile Include="scripts\TextPreview.cs" />
+    <Compile Include="scripts\Window.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
