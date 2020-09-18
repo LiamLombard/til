@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Linq;
+using System.Collections.Generic;
 using System.IO;
 
 public class AddButton : Button
@@ -21,11 +23,37 @@ public class AddButton : Button
 		{
 			if(!editor.Text.Empty())
 			{
-				string fileContents = System.IO.File.ReadAllText(w.path);
+				string date = DateTime.Now.ToString("dd.MM.yy");
+				bool found = false;
+				LinkedList<string> fileContents = new LinkedList<string>();
+
+				foreach(string line in System.IO.File.ReadLines(w.path))
+				{
+					GD.Print($"{date} in {line}? -> {line.Contains(date)}");
+					if(!found && line.Contains(date))
+					{
+						found = true;
+
+						fileContents.AddLast(line);
+						fileContents.AddLast($"* {editor.Text}");
+						continue;
+					}
+					fileContents.AddLast(line);
+				}
+
+				if(!found)
+				{
+					// Have to add in reverse order because we're adding to the top
+					fileContents.AddFirst($"* {editor.Text}");
+					fileContents.AddFirst($"# {date}");
+				}
+
 				using (StreamWriter swriter = new StreamWriter(w.path, false))
 				{
-					fileContents = "* " + editor.Text + System.Environment.NewLine + fileContents;
-					swriter.Write(fileContents);
+					foreach (string line in fileContents)
+					{
+						swriter.WriteLine(line);
+					}
 				}
 
 				// Reapply text
