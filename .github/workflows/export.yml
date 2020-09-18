@@ -1,5 +1,7 @@
-steps:
-  - name: Godot Export
-    uses: firebelley/godot-export@v2.4.0
+jobs:
+  export:
+    steps:
+      - name: Godot Export
+        uses: firebelley/godot-export@v2.4.0
 
 on: push
