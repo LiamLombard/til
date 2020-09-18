@@ -2,19 +2,19 @@ using Godot;
 using System;
 using System.IO;
 
-public class EditButton : Button
+public class SaveButton : Button
 {
 	private TextEdit editor;
 	private TextPreview preview;
 	private Window window;
-	private SaveButton saveButton;
+	private EditButton editButton;
 
 	public override void _Ready()
 	{
 		editor = GetNode<TextEdit>("/root/Window/VB/MainHB/Editor");
 		preview = GetNode<TextPreview>("/root/Window/VB/MainHB/TextPreview");
 		window = GetNode<Window>("/root/Window");
-		saveButton = GetNode<SaveButton>("/root/Window/VB/BottomHB/SaveButton");
+		editButton = GetNode<EditButton>("/root/Window/VB/BottomHB/EditButton");
 	}
 
 	private void Pressed()
@@ -22,15 +22,20 @@ public class EditButton : Button
 		string path = window.GetFilePath();
 		if(!path.Empty())
 		{
-			string fileContents = System.IO.File.ReadAllText(path);
-			editor.Text = fileContents;
+			string fileContents = editor.Text;
+			using (StreamWriter swriter = new StreamWriter(path, false))
+			{
+				swriter.Write(fileContents);
+			}
+			editor.Text = "";
 
-			// Hide unneeded
+			// Reapply text
 			TextPreview textPreview = GetNode<TextPreview>("/root/Window/VB/MainHB/TextPreview");
-			textPreview.Hide();
+			textPreview.SetTextFromFile(path);
+			textPreview.Show();
 
 			VSeparator seperator = GetNode<VSeparator>("/root/Window/VB/MainHB/VSeparator");
-			seperator.Hide();
+			seperator.Show();
 		}
 		else
 		{
@@ -39,7 +44,7 @@ public class EditButton : Button
 			GD.Print("Path is not set");
 		}
 		this.Hide();
-		saveButton.Show();
+		editButton.Show();
 	}
 }
 

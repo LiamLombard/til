@@ -37,10 +37,10 @@ public class FileButton : MenuButton
 		GD.Print("Push file");
 	}
 
-	private void OnOpenFile(String path)
+	public void OpenFile(String path)
 	{
 		Window w = GetNode<Window>("/root/Window");
-		w.path = path;
+		w.SaveFilePath(path);
 
 		TextPreview textPreview = GetNode<TextPreview>("/root/Window/VB/MainHB/TextPreview");
 		textPreview.SetTextFromFile(path);
@@ -52,7 +52,7 @@ public class FileButton : MenuButton
 	private void OnCloseFile()
 	{
 		Window w = GetNode<Window>("/root/Window");
-		w.path = "";
+		w.SaveFilePath("");
 
 		TextPreview textPreview = GetNode<TextPreview>("/root/Window/VB/MainHB/TextPreview");
 		textPreview.ClearText();
@@ -61,4 +61,3 @@ public class FileButton : MenuButton
 		bottomButtons.Hide();
 	}
 }
-

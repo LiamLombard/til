@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Window.cs" type="Script" id=1]
 [ext_resource path="res://FileButton.cs" type="Script" id=2]
 [ext_resource path="res://TextPreview.cs" type="Script" id=3]
 [ext_resource path="res://AddButton.cs" type="Script" id=4]
 [ext_resource path="res://EditButton.cs" type="Script" id=5]
+[ext_resource path="res://SaveButton.cs" type="Script" id=6]
 
 [node name="Window" type="Control"]
 anchor_right = 1.0
@@ -146,18 +147,27 @@ __meta__ = {
 }
 
 [node name="EditButton" type="Button" parent="VB/BottomHB"]
-margin_left = 987.0
-margin_right = 1024.0
+margin_left = 902.0
+margin_right = 938.0
 margin_bottom = 20.0
 text = "Edit"
 script = ExtResource( 5 )
 
-[node name="AddButton" type="Button" parent="VB/BottomHB"]
-margin_left = 946.0
+[node name="SaveButton" type="Button" parent="VB/BottomHB"]
+visible = false
+margin_left = 942.0
 margin_right = 983.0
+margin_bottom = 20.0
+text = "Save"
+script = ExtResource( 6 )
+
+[node name="AddButton" type="Button" parent="VB/BottomHB"]
+margin_left = 987.0
+margin_right = 1024.0
 margin_bottom = 20.0
 text = "Add"
 script = ExtResource( 4 )
-[connection signal="file_selected" from="CenterContainer/FileDialog" to="VB/TopHB/FileButton" method="OnOpenFile"]
+[connection signal="file_selected" from="CenterContainer/FileDialog" to="VB/TopHB/FileButton" method="OpenFile"]
 [connection signal="pressed" from="VB/BottomHB/EditButton" to="VB/BottomHB/EditButton" method="Pressed"]
+[connection signal="pressed" from="VB/BottomHB/SaveButton" to="VB/BottomHB/SaveButton" method="Pressed"]
 [connection signal="pressed" from="VB/BottomHB/AddButton" to="VB/BottomHB/AddButton" method="AddEntry"]

@@ -18,8 +18,9 @@ public class AddButton : Button
 	private void AddEntry()
 	{
 		Window w = GetNode<Window>("/root/Window");
+		string path = w.GetFilePath();
 
-		if(!w.path.Empty())
+		if(!path.Empty())
 		{
 			if(!editor.Text.Empty())
 			{
@@ -27,7 +28,7 @@ public class AddButton : Button
 				bool found = false;
 				LinkedList<string> fileContents = new LinkedList<string>();
 
-				foreach(string line in System.IO.File.ReadLines(w.path))
+				foreach(string line in System.IO.File.ReadLines(path))
 				{
 					GD.Print($"{date} in {line}? -> {line.Contains(date)}");
 					if(!found && line.Contains(date))
@@ -48,7 +49,7 @@ public class AddButton : Button
 					fileContents.AddFirst($"# {date}");
 				}
 
-				using (StreamWriter swriter = new StreamWriter(w.path, false))
+				using (StreamWriter swriter = new StreamWriter(path, false))
 				{
 					foreach (string line in fileContents)
 					{
@@ -58,7 +59,7 @@ public class AddButton : Button
 
 				// Reapply text
 				TextPreview textPreview = GetNode<TextPreview>("/root/Window/VB/MainHB/TextPreview");
-				textPreview.SetTextFromFile(w.path);
+				textPreview.SetTextFromFile(path);
 
 				// Clear editor
 				editor.Text = "";

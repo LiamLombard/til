@@ -61,6 +61,7 @@
     <Compile Include="EditButton.cs" />
     <Compile Include="FileButton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaveButton.cs" />
     <Compile Include="TextPreview.cs" />
     <Compile Include="Window.cs" />
   </ItemGroup>
