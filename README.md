@@ -8,3 +8,11 @@ Not much really. Choose a file and add your entries like so. The file will be us
 
 There's also some simple functionality for editing the full file if you want to, for example if you make a mistake.
 ![](res/doc/til2.gif)
+
+## Todo
+
+There's plenty of things to do...
+* Fix linux export for releases built in CI
+* Display the current open file
+* Decouple some of the functional code from the UI code
+* Add keyboard shortcuts
