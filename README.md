@@ -13,6 +13,7 @@ There's also some simple functionality for editing the full file if you want to,
 
 There's plenty of things to do...
 * Fix linux export for releases built in CI
-* Display the current open file
+* Display the current open filename
 * Decouple some of the functional code from the UI code
 * Add keyboard shortcuts
+* Make prettier
