@@ -17,6 +17,7 @@ _global_script_class_icons={
 
 config/name="til"
 run/main_scene="res://scenes/Window.tscn"
+run/low_processor_mode=true
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 
